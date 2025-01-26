@@ -1,0 +1,18 @@
+{
+    "id": "90003",
+    "c": 1000,
+    "l": 500,
+    "machining_compiled": {
+        "x": 1000,
+        "y": 500,
+        "z": 20,
+        "horizontalDrills": [
+            {"x": 0, "y": 125, "z": 10, "face": "i", "depth": 22, "diameter": 7},
+            {"x": 0, "y": 375, "z": 10, "face": "i", "depth": 22, "diameter": 7}
+        ],
+        "verticalDrills": [
+            {"x": 500, "y": 125, "face": "i", "depth": 15, "diameter": 12},
+            {"x": 500, "y": 375, "face": "i", "depth": 15, "diameter": 12}
+        ]
+    }
+}

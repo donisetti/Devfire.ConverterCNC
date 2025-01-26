@@ -1,0 +1,95 @@
+{
+  "c": 1170,
+  "l": 90,
+  "function": "Travessa dianteira",
+  "id": "88036",
+  "machining_compiled": {
+    "x": 1170,
+    "y": 90,
+    "z": 15,
+    "startSide": 0,
+    "horizontalDrills": [
+      {
+        "x": 0,
+        "y": 68,
+        "z": 7.5,
+        "face": "i",
+        "depth": 21,
+        "corner": 1,
+        "diameter": 8,
+        "direction": "XP"
+      },
+      {
+        "x": 0,
+        "y": 22,
+        "z": 7.5,
+        "face": "i",
+        "depth": 21,
+        "corner": 3,
+        "diameter": 8,
+        "direction": "XP"
+      },
+      {
+        "x": 0,
+        "y": 22,
+        "z": 7.5,
+        "face": "i",
+        "depth": 20,
+        "corner": 1,
+        "diameter": 8,
+        "direction": "XP"
+      },
+      {
+        "x": 0,
+        "y": 68,
+        "z": 7.5,
+        "face": "i",
+        "depth": 20,
+        "corner": 3,
+        "diameter": 8,
+        "direction": "XP"
+      }
+    ],
+    "verticalDrills": [
+      {
+        "x": 1146.5,
+        "y": 22,
+        "face": "i",
+        "depth": 12.5,
+        "corner": 0,
+        "diameter": 15,
+        "bolthole": false
+      },
+      {
+        "x": 23.5,
+        "y": 22,
+        "face": "i",
+        "depth": 12.5,
+        "corner": 0,
+        "diameter": 15,
+        "bolthole": false
+      },
+      {
+        "x": 662.5,
+        "y": 68,
+        "face": "i",
+        "depth": 11,
+        "corner": 0,
+        "diameter": 8,
+        "bolthole": false
+      },
+      {
+        "x": 662.5,
+        "y": 22,
+        "face": "i",
+        "depth": 11,
+        "corner": 0,
+        "diameter": 5,
+        "bolthole": false
+      }
+    ],
+    "furrowMachining": null,
+    "furrowMachiningPair": null,
+    "millingCubes": []
+  }
+}

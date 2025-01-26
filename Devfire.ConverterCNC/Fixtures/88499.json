@@ -1,0 +1,139 @@
+{
+  "c": 690,
+  "l": 582,
+  "function": "Lateral esquerda",
+  "id": "88499",
+  "machining_compiled": {
+    "x": 690,
+    "y": 582,
+    "z": 15,
+    "startSide": 0,
+    "horizontalDrills": [
+      {
+        "x": 80,
+        "y": 0,
+        "z": 7.5,
+        "face": "i",
+        "depth": 15,
+        "corner": 0,
+        "diameter": 3,
+        "direction": "YP"
+      },
+      {
+        "x": 285,
+        "y": 0,
+        "z": 7.5,
+        "face": "i",
+        "depth": 15,
+        "corner": 0,
+        "diameter": 3,
+        "direction": "YP"
+      },
+      {
+        "x": 598,
+        "y": 0,
+        "z": 7.5,
+        "face": "i",
+        "depth": 15,
+        "corner": 0,
+        "diameter": 3,
+        "direction": "YP"
+      }
+    ],
+    "verticalDrills": [
+      {
+        "x": 7.5,
+        "y": 545,
+        "face": "i",
+        "depth": 15,
+        "corner": 0,
+        "diameter": 3,
+        "bolthole": true
+      },
+      {
+        "x": 7.5,
+        "y": 37,
+        "face": "i",
+        "depth": 15,
+        "corner": 0,
+        "diameter": 3,
+        "bolthole": true
+      },
+      {
+        "x": 7.5,
+        "y": 291,
+        "face": "i",
+        "depth": 15,
+        "corner": 0,
+        "diameter": 3,
+        "bolthole": true
+      },
+      {
+        "x": 642,
+        "y": 7.5,
+        "face": "i",
+        "depth": 15,
+        "corner": 0,
+        "diameter": 3,
+        "bolthole": true
+      },
+      {
+        "x": 668,
+        "y": 7.5,
+        "face": "i",
+        "depth": 15,
+        "corner": 0,
+        "diameter": 3,
+        "bolthole": true
+      },
+      {
+        "x": 642,
+        "y": 574.5,
+        "face": "i",
+        "depth": 15,
+        "corner": 0,
+        "diameter": 3,
+        "bolthole": true
+      },
+      {
+        "x": 668,
+        "y": 574.5,
+        "face": "i",
+        "depth": 15,
+        "corner": 0,
+        "diameter": 3,
+        "bolthole": true
+      },
+      {
+        "x": 318,
+        "y": 316,
+        "face": "i",
+        "depth": 2,
+        "corner": 0,
+        "diameter": 3,
+        "bolthole": false
+      },
+      {
+        "x": 318,
+        "y": 107,
+        "face": "i",
+        "depth": 2,
+        "corner": 0,
+        "diameter": 3,
+        "bolthole": false
+      },
+      {
+        "x": 318,
+        "y": 535,
+        "face": "i",
+        "depth": 2,
+        "corner": 0,
+        "diameter": 3,
+        "bolthole": false
+      }
+    ],
+    "furrowMachining": null,
+    "furrowMachiningPair": null,
+    "millingCubes": []
+  }
+}
