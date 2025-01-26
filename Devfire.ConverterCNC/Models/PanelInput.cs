@@ -14,19 +14,17 @@ namespace CncConverter.Models
     public class MachiningCompiled
     {
        
-        public double? x { get; set; } = 0;
-        public double? y { get; set; } = 0;
-        public double? z { get; set; } = 0;
+        public float? x { get; set; } = 0;
+        public float? y { get; set; } = 0;
+        public float? z { get; set; } = 0;
         public int? StartSide { get; set; } = 0;
         public List<Machining> horizontalDrills { get; set; } = new List<Machining>();
         public List<Machining> verticalDrills { get; set; } = new List<Machining>();
-        public List<Machining> furrowMachining { get; set; } = new List<Machining>();
-        public List<Machining> MillingCubes { get; set; } = new List<Machining>();
+        public FurrowMachining furrowMachining { get; set; } = new FurrowMachining();
+       
+        //public List<Machining> MillingCubes { get; set; } = new List<Machining>();
 
-        //public static implicit operator MachiningCompiled(MachiningCompiled v)
-        //{
-        //    throw new NotImplementedException();
-        //}
+       
     }
 
     public class Machining

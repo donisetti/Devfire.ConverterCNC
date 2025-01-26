@@ -51,17 +51,18 @@ namespace XmlConverter.Tests
         }
 
         [Theory(DisplayName = $"Validar os atributos do json")]
-        [InlineData("88040", 513.3, 135.25, 15, true)]
-        [InlineData("88498", 400, 300, 18, true)]
-        [InlineData("88499", 690, 582, 15, true)]
-        public void ConvertToXml_ShouldValidateAttributes(string id, double length, double width, double thickness, bool isProduce)
+        [InlineData("98040", 513.3f, 135.25f, 15f, true)]
+        [InlineData("88040", 513.3f, 135.25f, 15f, true)]
+        [InlineData("88498", 400f, 300f, 18f, true)]
+        [InlineData("88499", 690f, 582f, 15f, true)]
+        public void ConvertToXml_ShouldValidateAttributes(string id, float length, float width, float thickness, bool isProduce)
         {
             // Arrange
             var panel = new PanelInput
             {
                 id = id,
-                c = (float?)length,
-                l = (float?)width,
+                c = length,
+                l = width,
                 machining_Compiled = new MachiningCompiled { z = thickness }
             };
 

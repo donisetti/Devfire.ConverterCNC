@@ -16,6 +16,9 @@ namespace CncConverter.Services
             if (panel.machining_Compiled == null)
                 throw new Exception("O campo 'MachiningCompiled' é obrigatório.");
 
+            if (panel.machining_Compiled.furrowMachining == null)
+                throw new Exception("O campo 'furrowMachining' é obrigatório.");
+
             var root = new XElement("Root",
                 new XAttribute("Cad", "BuiltInCad"),
                 new XAttribute("version", "2.0"),
@@ -35,7 +38,7 @@ namespace CncConverter.Services
                                 panel.machining_Compiled.verticalDrills?.Select(m => GenerateMachiningElement(m, "verticalDrill")) ?? Enumerable.Empty<XElement>(),
 
                                 // Processar FurrowMachining
-                                panel.machining_Compiled.furrowMachining?.Select(m => GenerateFurrowMachiningElement(m)) ?? Enumerable.Empty<XElement>()
+                                GenerateFurrowMachiningElement(panel.machining_Compiled.furrowMachining) ?? null
                             )
                         )
                     )
@@ -61,7 +64,7 @@ namespace CncConverter.Services
             );
         }
 
-        private static XElement GenerateFurrowMachiningElement(CncConverter.Models.Machining furrowMachining)
+        private static XElement GenerateFurrowMachiningElement(CncConverter.Models.FurrowMachining furrowMachining)
         {
             // Verificar se o objeto 'furrowMachining' é nulo antes de acessar as propriedades
             if (furrowMachining == null)
@@ -70,8 +73,8 @@ namespace CncConverter.Services
             return new XElement("FurrowMachining",
                 new XAttribute("Face", furrowMachining.face ?? "Undefined"),
                 new XAttribute("Depth", furrowMachining.depth),
-                new XAttribute("Width", furrowMachining.diameter), // Assuming width is stored in diameter
-                new XAttribute("Distance", furrowMachining.x) // Assuming distance is stored in x
+                new XAttribute("Width", furrowMachining.width),
+                new XAttribute("Distance", furrowMachining.distance)
             );
         }
     }

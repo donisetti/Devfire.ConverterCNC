@@ -74,6 +74,12 @@
         "bolthole": false
       }
     ],
+    "furrowMachining": {
+      "face": "i",
+      "depth": 8,
+      "width": 6.7,
+      "distance": 10
+    },
     "furrowMachiningPair": null,
     "millingCubes": []
   }

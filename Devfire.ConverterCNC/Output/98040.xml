@@ -1,0 +1,18 @@
+<Root Cad="BuiltInCad" version="2.0">
+  <Project>
+    <Panels>
+      <Panel IsProduce="true" ID="98040" Length="513.3" Width="135.25" Thickness="15">
+        <Machines>
+          <Machining Type="verticalDrill" X="479.3" Y="67.63" Diameter="3" Depth="1.5" Face="e" />
+          <Machining Type="verticalDrill" X="287.3" Y="67.63" Diameter="3" Depth="1.5" Face="e" />
+          <Machining Type="verticalDrill" X="63.3" Y="67.63" Diameter="3" Depth="1.5" Face="e" />
+          <Machining Type="verticalDrill" X="7.5" Y="96.55" Diameter="5" Depth="11" Face="i" />
+          <Machining Type="verticalDrill" X="7.5" Y="27" Diameter="5" Depth="11" Face="i" />
+          <Machining Type="verticalDrill" X="505.8" Y="96.55" Diameter="5" Depth="11" Face="i" />
+          <Machining Type="verticalDrill" X="505.8" Y="27" Diameter="5" Depth="11" Face="i" />
+          <FurrowMachining Face="i" Depth="8" Width="6.7" Distance="10" />
+        </Machines>
+      </Panel>
+    </Panels>
+  </Project>
+</Root>

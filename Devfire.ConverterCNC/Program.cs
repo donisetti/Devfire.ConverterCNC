@@ -65,23 +65,7 @@ foreach (var file in Directory.GetFiles(inputPath, "*.json"))
         // Escrever o arquivo XML
         File.WriteAllText(outputFile, xml);
 
-        // mover o arquivo para a pasta de validos
-        var validPath = Path.Combine(basePath, "Validos");
-        if (!Directory.Exists(validPath))
-        {
-            Directory.CreateDirectory(validPath);
-        }
-
-
-        var validFile = Path.Combine(validPath, Path.GetFileName(file));
-        File.Move(file, validFile);
-
-
-        Console.WriteLine($"Arquivo movido para a pasta de válidos: {validFile}");
-
-
-
-
+      //  MoverValido(basePath, file);
 
         Console.WriteLine($">>>>>>>: {outputFile}");
 
@@ -99,19 +83,7 @@ foreach (var file in Directory.GetFiles(inputPath, "*.json"))
         Console.WriteLine($"Erro ao processar o arquivo '{file}': {erro}");
         Console.WriteLine("------------------------");
 
-        // mover o arquivo para a pasta de invalidos
-        var invalidPath = Path.Combine(basePath, "Invalidos");
-        if (!Directory.Exists(invalidPath))
-        {
-            Directory.CreateDirectory(invalidPath);
-        }
-
-
-        var invalidFile = Path.Combine(invalidPath, Path.GetFileName(file));
-        File.Move(file, invalidFile);
-
-
-        Console.WriteLine($"Arquivo movido para a pasta de inválidos: {invalidFile}");
+      //  MoverInvalido(basePath, file);
 
         Console.WriteLine();
         Console.WriteLine();
@@ -138,4 +110,38 @@ string GetBasePath()
         // Em produção (binário executável)
         return AppDomain.CurrentDomain.BaseDirectory;
 #endif
+}
+
+static void MoverInvalido(string basePath, string file)
+{
+    // mover o arquivo para a pasta de invalidos
+    var invalidPath = Path.Combine(basePath, "Invalidos");
+    if (!Directory.Exists(invalidPath))
+    {
+        Directory.CreateDirectory(invalidPath);
+    }
+
+
+    var invalidFile = Path.Combine(invalidPath, Path.GetFileName(file));
+    File.Move(file, invalidFile);
+
+
+    Console.WriteLine($"Arquivo movido para a pasta de inválidos: {invalidFile}");
+}
+
+static void MoverValido(string basePath, string file)
+{
+    // mover o arquivo para a pasta de validos
+    var validPath = Path.Combine(basePath, "Validos");
+    if (!Directory.Exists(validPath))
+    {
+        Directory.CreateDirectory(validPath);
+    }
+
+
+    var validFile = Path.Combine(validPath, Path.GetFileName(file));
+    File.Move(file, validFile);
+
+
+    Console.WriteLine($"Arquivo movido para a pasta de válidos: {validFile}");
 }
