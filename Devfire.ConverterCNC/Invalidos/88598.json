@@ -1,0 +1,110 @@
+{
+  "c": 300,
+  "l": 400,
+  "function": "Lateral direita gaveta",
+  "id": "88598",
+  "machining_compiled": {
+    "x": 400,
+    "y": 300,
+    "z": 18,
+    "aliases": [
+      "minifix-18mm",
+      "minifix-18mm",
+      "minifix-18mm",
+      "minifix-18mm"
+    ],
+    "startSide": 1,
+    "horizontalDrills": [
+      {
+        "face": "i",
+        "corner": 2,
+        "direction": "XP",
+        "x": 0,
+        "y": 69,
+        "z": 10.5,
+        "depth": 24,
+        "diameter": 8
+      },
+      {
+        "face": "i",
+        "corner": 0,
+        "direction": "XP",
+        "x": 0,
+        "y": 37,
+        "z": 10.5,
+        "depth": 24,
+        "diameter": 8
+      },
+      {
+        "face": "i",
+        "corner": 3,
+        "direction": "XP",
+        "x": 0,
+        "y": 69,
+        "z": 10.5,
+        "depth": 24,
+        "diameter": 8
+      },
+      {
+        "face": "i",
+        "corner": 1,
+        "direction": "XP",
+        "x": 0,
+        "y": 37,
+        "z": 10.5,
+        "depth": 24,
+        "diameter": 8
+      }
+    ],
+    "verticalDrills": [
+      {
+        "face": "i",
+        "corner": 2,
+        "bolthole": false,
+        "x": 25,
+        "y": 69,
+        "depth": 12,
+        "diameter": 15
+      },
+      {
+        "face": "i",
+        "corner": 0,
+        "bolthole": false,
+        "x": 25,
+        "y": 37,
+        "depth": 12,
+        "diameter": 15
+      },
+      {
+        "face": "i",
+        "corner": 3,
+        "bolthole": false,
+        "x": 25,
+        "y": 69,
+        "depth": 12,
+        "diameter": 15
+      },
+      {
+        "face": "i",
+        "corner": 1,
+        "bolthole": false,
+        "x": 25,
+        "y": 37,
+        "depth": 12,
+        "diameter": 15
+      }
+    ],
+    "furrowMachining": {
+      "face": "i",
+      "depth": 5,
+      "width": 6.7,
+      "distance": 15
+    },
+    "furrowMachiningPair": {
+      "face": "e",
+      "depth": 5,
+      "width": 6.7,
+      "distance": 15
+    }
+  }
+}

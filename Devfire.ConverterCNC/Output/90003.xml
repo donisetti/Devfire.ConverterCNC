@@ -1,0 +1,14 @@
+<Root Cad="BuiltInCad" version="2.0">
+  <Project>
+    <Panels>
+      <Panel IsProduce="true" ID="90003" Length="1000" Width="500" Thickness="20">
+        <Machines>
+          <Machining Type="horizontalDrill" X="0" Y="125" Diameter="7" Depth="22" Face="i" />
+          <Machining Type="horizontalDrill" X="0" Y="375" Diameter="7" Depth="22" Face="i" />
+          <Machining Type="verticalDrill" X="500" Y="125" Diameter="12" Depth="15" Face="i" />
+          <Machining Type="verticalDrill" X="500" Y="375" Diameter="12" Depth="15" Face="i" />
+        </Machines>
+      </Panel>
+    </Panels>
+  </Project>
+</Root>
