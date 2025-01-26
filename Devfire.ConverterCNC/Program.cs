@@ -65,7 +65,7 @@ foreach (var file in Directory.GetFiles(inputPath, "*.json"))
         // Escrever o arquivo XML
         File.WriteAllText(outputFile, xml);
 
-      //  MoverValido(basePath, file);
+        MoverValido(basePath, file);
 
         Console.WriteLine($">>>>>>>: {outputFile}");
 
@@ -83,7 +83,7 @@ foreach (var file in Directory.GetFiles(inputPath, "*.json"))
         Console.WriteLine($"Erro ao processar o arquivo '{file}': {erro}");
         Console.WriteLine("------------------------");
 
-      //  MoverInvalido(basePath, file);
+        MoverInvalido(basePath, file);
 
         Console.WriteLine();
         Console.WriteLine();
