@@ -363,4 +363,264 @@ CncConverter/
 ├── Test/
 │   ├── XmlConverterTests.cs   # Testes automatizados com xUnit
 
+
+#Plano Geral da Solução
+##Estrutura do Projeto:
+
+#Projeto em .NET 8 Console Application.
+
+Classes e métodos organizados para leitura de JSON, conversão e geração do XML.
+Testes automatizados usando xUnit.
+``
+Componentes Principais:
+
+Classe PanelInput: Representa a entrada JSON.
+Classe XmlConverter: Contém a lógica para converter os dados JSON em XML.
+Ponto de entrada (Program.cs): Lê os arquivos JSON e escreve os XMLs gerados.
+Ferramentas e Tecnologias:
+
+System.Text.Json: Para desserializar os arquivos JSON.
+System.Xml.Linq: Para gerar os XMLs.
+xUnit: Para testes unitários.
+Estrutura do Projeto
+plaintext
+Copiar
+Editar
+cnc-converter/
+├── Program.cs                 # Ponto de entrada do programa
+├── Models/
+│   ├── PanelInput.cs          # Modelo para os dados do JSON
+│   ├── Machining.cs           # Modelo para operações de usinagem
+├── Services/
+│   ├── XmlConverter.cs        # Lógica de conversão JSON para XML
+├── Test/
+│   ├── XmlConverterTests.cs   # Testes unitários para a conversão
+├── Fixtures/
+│   ├── 90001.json             # Arquivo de exemplo JSON
+│   ├── 90002.json             # Outro exemplo JSON
+│   ├── 90003.json             # Outro exemplo JSON
+Passo a Passo da Implementação
+1. Criar o Projeto
+bash
+Copiar
+Editar
+dotnet new console -n CncConverter
+cd CncConverter
+2. Adicionar a Classe PanelInput
+No diretório Models/PanelInput.cs:
+
+csharp
+Copiar
+Editar
+using System.Collections.Generic;
+
+namespace CncConverter.Models
+{
+    public class PanelInput
+    {
+        public string Id { get; set; }
+        public int C { get; set; }
+        public int L { get; set; }
+        public MachiningData MachiningCompiled { get; set; }
+    }
+
+    public class MachiningData
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Z { get; set; }
+        public List<Drill> HorizontalDrills { get; set; }
+        public List<Drill> VerticalDrills { get; set; }
+        public List<Furrow> FurrowMachining { get; set; }
+    }
+
+    public class Drill
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Z { get; set; }
+        public int Depth { get; set; }
+        public int Diameter { get; set; }
+        public int Face { get; set; }
+    }
+
+    public class Furrow
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Z { get; set; }
+        public int Length { get; set; }
+        public int Width { get; set; }
+        public int Depth { get; set; }
+    }
+}
+3. Criar a Classe XmlConverter
+No diretório Services/XmlConverter.cs:
+
+csharp
+Copiar
+Editar
+using System.Xml.Linq;
+using CncConverter.Models;
+
+namespace CncConverter.Services
+{
+    public class XmlConverter
+    {
+        public string ConvertToXml(PanelInput panel)
+        {
+            var root = new XElement("Root",
+                new XElement("Project",
+                    new XElement("Panel",
+                        new XAttribute("ID", panel.Id),
+                        new XAttribute("Length", panel.MachiningCompiled.X),
+                        new XAttribute("Width", panel.MachiningCompiled.Y),
+                        new XAttribute("Thickness", panel.MachiningCompiled.Z),
+                        new XElement("Machines",
+                            panel.MachiningCompiled.HorizontalDrills.Select(drill =>
+                                new XElement("Machining",
+                                    new XAttribute("Type", "1"),
+                                    new XAttribute("X", drill.X),
+                                    new XAttribute("Y", drill.Y),
+                                    new XAttribute("Z", drill.Z),
+                                    new XAttribute("Diameter", drill.Diameter),
+                                    new XAttribute("Depth", drill.Depth),
+                                    new XAttribute("Face", drill.Face))),
+                            panel.MachiningCompiled.VerticalDrills.Select(drill =>
+                                new XElement("Machining",
+                                    new XAttribute("Type", "2"),
+                                    new XAttribute("X", drill.X),
+                                    new XAttribute("Y", drill.Y),
+                                    new XAttribute("Diameter", drill.Diameter),
+                                    new XAttribute("Depth", drill.Depth),
+                                    new XAttribute("Face", drill.Face))),
+                            panel.MachiningCompiled.FurrowMachining.Select(furrow =>
+                                new XElement("Machining",
+                                    new XAttribute("Type", "3"),
+                                    new XAttribute("X", furrow.X),
+                                    new XAttribute("Y", furrow.Y),
+                                    new XAttribute("Z", furrow.Z),
+                                    new XAttribute("Length", furrow.Length),
+                                    new XAttribute("Width", furrow.Width),
+                                    new XAttribute("Depth", furrow.Depth)))
+                        )
+                    )
+                )
+            );
+
+            return root.ToString();
+        }
+    }
+}
+4. Criar o Program.cs
+csharp
+Copiar
+Editar
+using System;
+using System.IO;
+using System.Text.Json;
+using CncConverter.Models;
+using CncConverter.Services;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        var inputPath = "Fixtures";
+        var outputPath = "Output";
+
+        if (!Directory.Exists(outputPath))
+            Directory.CreateDirectory(outputPath);
+
+        var converter = new XmlConverter();
+
+        foreach (var file in Directory.GetFiles(inputPath, "*.json"))
+        {
+            try
+            {
+                var json = File.ReadAllText(file);
+                var panelInput = JsonSerializer.Deserialize<PanelInput>(json);
+
+                if (panelInput == null)
+                    throw new Exception("Arquivo JSON inválido.");
+
+                var xml = converter.ConvertToXml(panelInput);
+
+                var outputFileName = Path.Combine(outputPath, $"{panelInput.Id}.xml");
+                File.WriteAllText(outputFileName, xml);
+
+                Console.WriteLine($"Arquivo XML gerado: {outputFileName}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao processar {file}: {ex.Message}");
+            }
+        }
+    }
+}
+5. Criar Testes com xUnit
+Adicione o projeto de testes:
+
+bash
+Copiar
+Editar
+dotnet new xunit -n CncConverter.Tests
+dotnet add CncConverter.Tests reference CncConverter
+No arquivo Test/XmlConverterTests.cs:
+
+csharp
+Copiar
+Editar
+using Xunit;
+using CncConverter.Models;
+using CncConverter.Services;
+
+public class XmlConverterTests
+{
+    [Fact]
+    public void ConvertToXml_ShouldGenerateValidXml()
+    {
+        var panel = new PanelInput
+        {
+            Id = "90001",
+            MachiningCompiled = new MachiningData
+            {
+                X = 1000,
+                Y = 2000,
+                Z = 18,
+                HorizontalDrills = new List<Drill>
+                {
+                    new Drill { X = 50, Y = 100, Z = 0, Diameter = 5, Depth = 10, Face = 1 }
+                },
+                VerticalDrills = new List<Drill>
+                {
+                    new Drill { X = 500, Y = 1000, Diameter = 8, Depth = 12, Face = 6 }
+                },
+                FurrowMachining = new List<Furrow>
+                {
+                    new Furrow { X = 100, Y = 300, Z = 0, Length = 500, Width = 50, Depth = 10 }
+                }
+            }
+        };
+
+        var converter = new XmlConverter();
+        var xml = converter.ConvertToXml(panel);
+
+        Assert.Contains("<Panel", xml);
+        Assert.Contains("90001", xml);
+        Assert.Contains("<Machining Type=\"1\"", xml);
+    }
+}
+
+6. Executar o Programa
+Para gerar os XMLs:
+
+dotnet run
+
+
+Para rodar os testes:
+
+
+dotnet test
+
 ```
